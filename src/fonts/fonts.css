@@ -1,0 +1,23 @@
+@font-face {
+  font-family: "MonumentExtended";
+  font-weight: normal;
+  src: url("./MonumentExtended-Regular.woff") format("woff"), url("./MonumentExtended-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "TTNorms-Regular";
+  font-weight: normal;
+  src: url("./TTNorms-Regular.woff") format("woff"), url("./TTNorms-Regular.woff2") format("woff2");
+}
+@font-face {
+  font-family: "TTNorms-Light";
+  font-weight: lighter;
+  src: url("./TTNorms-Light.woff") format("woff"), url("./TTNorms-Light.woff2") format("woff2");
+}
+.header {
+  font-family: "MonumentExtended";
+  font-size: 50px;
+  color: var(--color-prm);
+}
+.copy {
+  font-family: "TTNorms-Regular";
+}
