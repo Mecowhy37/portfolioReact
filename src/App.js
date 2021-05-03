@@ -5,25 +5,31 @@ import Layout from "./components/Layout";
 import Navbar from "./components/navigation/Navbar";
 import About from "./components/About";
 import Contact from "./components/Contact";
-import Portfolio from "./components/Portfolio";
+import Works from "./components/Works";
 
 const Content = styled.main`
-  grid-row: 2/3;
-  grid-column: 2/3;
+  grid-row: 1/-1;
+  grid-column: 1/-1;
   place-self: center;
+  height: 100%;
+  width: 100%;
+  display: grid;
+  place-items: center;
+  z-index: 0;
 `;
 
 function App() {
-  const linksArr = ["about", "portfolio", "contact"];
+  const linksArr = ["works", "about", "contact"];
 
   return (
     <Router>
       <Layout>
         <Navbar links={linksArr}></Navbar>
         <Content>
+          <Route exact path="/" component={About} />
           <Route exact path="/about" component={About} />
           <Route exact path="/contact" component={Contact} />
-          <Route exact path="/portfolio" component={Portfolio} />
+          <Route exact path="/works" component={Works} />
         </Content>
       </Layout>
     </Router>

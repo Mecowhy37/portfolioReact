@@ -7,11 +7,12 @@ const NavContainer = styled.nav`
   grid-row: 1/2;
   height: 100%;
   width: 100%;
-  border-bottom: 1px solid var(--color-prm);
+  border-bottom: 1px solid #edededbd;
   display: flex;
   flex-direction: row;
   align-items: flex-end;
   justify-content: space-around;
+  z-index: 1;
 `;
 
 function Navbar(props) {
