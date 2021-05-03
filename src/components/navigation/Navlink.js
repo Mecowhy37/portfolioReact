@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 import "../../fonts/fonts.css";
 
 const Anchor = styled(Link)`
-  font-size: 18px;
-  margin-bottom: 10px;
+  font-size: 22px;
+  margin-top: 10px;
   color: var(--color-prm);
   cursor: pointer;
   text-decoration: none;

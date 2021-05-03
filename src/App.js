@@ -8,7 +8,7 @@ import Contact from "./components/Contact";
 import Works from "./components/Works";
 
 const Content = styled.main`
-  grid-row: 1/-1;
+  grid-row: 2/-1;
   grid-column: 1/-1;
   place-self: center;
   height: 100%;

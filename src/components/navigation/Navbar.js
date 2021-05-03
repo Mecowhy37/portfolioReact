@@ -10,7 +10,7 @@ const NavContainer = styled.nav`
   border-bottom: 1px solid #edededbd;
   display: flex;
   flex-direction: row;
-  align-items: flex-end;
+  align-items: center;
   justify-content: space-around;
   z-index: 1;
 `;
