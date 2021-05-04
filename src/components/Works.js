@@ -7,64 +7,66 @@ const Cards = styled.ul`
   position: relative;
   height: 100%;
   width: 100%;
-  padding: 0 40px 0px 0px;
+  padding: 0 40px;
   list-style: none;
   overflow: hidden;
 `;
-
-const initialState = [
+const initialList = [
   {
     name: "vibal",
     focus: false,
+    opened: false,
   },
   {
     name: "superGood",
     focus: false,
+    opened: false,
   },
   {
     name: "lets watch",
     focus: false,
+    opened: false,
   },
   {
     name: "backend",
     focus: false,
+    opened: false,
   },
   {
     name: "mergn",
     focus: false,
+    opened: false,
   },
 ];
 
 const Works = () => {
-  let [worksList, setWorkList] = useState(initialState);
-
-  function focusing() {
-    setWorkList((prevWorksList) => {
-      let all = [...document.querySelectorAll(".work")];
-      let open = [...document.querySelectorAll(".open")];
-      let lastOpen = open[open.length - 1];
-      let indexInState = all.indexOf(lastOpen);
-      let newState = prevWorksList.map((workObj) => {
-        if (indexInState > -1) {
-          if (prevWorksList.indexOf(workObj) === indexInState) {
-            return { ...workObj, focus: true };
+  let [worksList, setWorkList] = useState(initialList);
+  function focusing(e) {
+    setWorkList((worksList) => {
+      let index = [...document.querySelectorAll(".work")].indexOf(e.target);
+      return worksList.map((workObj) => {
+        if (workObj === worksList[index]) {
+          if (workObj.focus && index === 0) {
+            return (workObj = { ...workObj, focus: false, opened: false });
           } else {
-            return { ...workObj, focus: false };
+            return (workObj = { ...workObj, focus: true, opened: true });
           }
         } else {
-          return { ...workObj, focus: false };
+          if (worksList.indexOf(workObj) <= index) {
+            return (workObj = { ...workObj, focus: false, opened: true });
+          } else {
+            return (workObj = { ...workObj, focus: false, opened: false });
+          }
         }
       });
-      console.log(newState);
-      return newState;
     });
   }
-
+  console.table(worksList);
   return (
     <Cards>
-      {worksList.map((workObj) => (
-        <Work key={workObj.name} focusHandler={focusing} index={worksList.indexOf(workObj)} name={workObj.name} focus={workObj.focus}></Work>
-      ))}
+      {worksList.map((workObj) => {
+        return <Work key={workObj.name} index={worksList.indexOf(workObj)} onClick={focusing} name={workObj.name} focus={workObj.focus} open={workObj.opened}></Work>;
+      })}
     </Cards>
   );
 };
