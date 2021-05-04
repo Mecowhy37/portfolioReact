@@ -10,7 +10,7 @@ const Card = styled.li`
   transition: 1s cubic-bezier(0.25, 0.68, 0.21, 0.99);
   /* left: ${({ index }) => (2 - index) * 40}px; */
   left: ${({ index }) => (4 - index) * 40}px;
-  transform: ${({ open }) => (open ? "translateX(600px)" : "")};
+  transform: ${({ open }) => (open ? "translateX(1200px)" : "")};
   &:hover {
     margin-left: 3px;
   }
