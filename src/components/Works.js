@@ -37,18 +37,17 @@ const Works = () => {
   ]);
 
   function focusing(e) {
-    setWorkList((worksList) => {
+    setWorkList((prevState) => {
       let index = [...document.querySelectorAll(".work")].indexOf(e.target);
-      worksList.forEach((workObj) => {
-        if (workObj === worksList[index]) {
-          return (workObj = { ...workObj, focus: true });
+      prevState.forEach((el) => {
+        if (prevState[index] === el) {
+          return [el, { focus: true }];
         } else {
-          return (workObj = { ...workObj, focus: false });
+          return el;
         }
       });
     });
   }
-  console.log(worksList);
 
   return (
     <Cards>
