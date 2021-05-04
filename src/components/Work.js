@@ -15,8 +15,8 @@ const Card = styled.li`
     transform: translateX(3px);
   }
   &.open {
-    /* transform: translateX(1195px); */
-    transform: translateX(500px);
+    transform: translateX(1195px);
+    /* transform: translateX(500px); */
   }
 `;
 
