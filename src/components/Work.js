@@ -20,25 +20,26 @@ const Card = styled.li`
 
 // function setPositions() {}
 
-const Work = ({ index }) => {
-  function clickAction(e) {
-    let all = [...document.querySelectorAll(".work")];
-    let opened = [...document.querySelectorAll(".open")];
-    let index = all.indexOf(e.target);
-    if (!e.target.classList.contains("open")) {
-      all.forEach((el) => (all.indexOf(el) <= index ? el.classList.add("open") : el.classList.remove("open")));
-    } else {
-      all.forEach((el) => {
-        if (opened.length > 1) {
-          all.indexOf(el) > all.indexOf(e.target) && el.classList.remove("open");
-        } else {
-          e.target.classList.remove("open");
-        }
-      });
-    }
-  }
+const Work = ({ index, handler }) => {
+  // function clickAction(e) {
+  //   console.log(e.target);
+  //   let all = [...document.querySelectorAll(".work")];
+  //   let opened = [...document.querySelectorAll(".open")];
+  //   let index = all.indexOf(e.target);
+  //   if (!e.target.classList.contains("open")) {
+  //     all.forEach((el) => (all.indexOf(el) <= index ? el.classList.add("open") : el.classList.remove("open")));
+  //   } else {
+  //     all.forEach((el) => {
+  //       if (opened.length > 1) {
+  //         all.indexOf(el) > all.indexOf(e.target) && el.classList.remove("open");
+  //       } else {
+  //         e.target.classList.remove("open");
+  //       }
+  //     });
+  //   }
+  // }
 
-  return <Card index={index} className="work" onClick={clickAction}></Card>;
+  return <Card index={index} onClick={handler} className="work"></Card>;
 };
 
 export default Work;
