@@ -7,9 +7,10 @@ const Card = styled.li`
   width: 40px;
   height: 100%;
   border-right: ${({ focus }) => (focus ? "1px solid red" : "1px solid var(--color-prm)")};
+  border-right: 1px solid var(--color-prm);
   transition: 1s cubic-bezier(0.25, 0.68, 0.21, 0.99);
   /* left: ${({ index }) => (2 - index) * 40}px; */
-  left: ${({ index }) => (3 - index) * 40}px;
+  left: ${({ index }) => (4 - index) * 40}px;
   &:hover {
     transform: translateX(3px);
   }
@@ -19,17 +20,13 @@ const Card = styled.li`
   }
 `;
 
-// function setPositions() {}
-
-const Work = ({ index, focus, handler }) => {
+function Work({ index, focus, focusHandler }) {
   function clickAction(e) {
-    console.log(e.target);
     let all = [...document.querySelectorAll(".work")];
     let opened = [...document.querySelectorAll(".open")];
     let index = all.indexOf(e.target);
     if (!e.target.classList.contains("open")) {
       all.forEach((el) => (all.indexOf(el) <= index ? el.classList.add("open") : el.classList.remove("open")));
-      // all.forEach((el) => el.classList.add("open"));
     } else {
       all.forEach((el) => {
         if (opened.length > 1) {
@@ -45,12 +42,12 @@ const Work = ({ index, focus, handler }) => {
       index={index}
       onClick={(e) => {
         clickAction(e);
-        handler();
+        // focusHandler();
       }}
-      className="work"
+      className={`work`}
       focus={focus}
     ></Card>
   );
-};
+}
 
 export default Work;

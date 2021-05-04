@@ -12,49 +12,58 @@ const Cards = styled.ul`
   overflow: hidden;
 `;
 
+const initialState = [
+  {
+    name: "vibal",
+    focus: false,
+  },
+  {
+    name: "superGood",
+    focus: false,
+  },
+  {
+    name: "lets watch",
+    focus: false,
+  },
+  {
+    name: "backend",
+    focus: false,
+  },
+  {
+    name: "mergn",
+    focus: false,
+  },
+];
+
 const Works = () => {
-  let [worksList, setWorkList] = useState([
-    {
-      name: "vibal",
-      focus: false,
-    },
-    {
-      name: "superGood",
-      focus: false,
-    },
-    {
-      name: "lets watch",
-      focus: false,
-    },
-    {
-      name: "backend",
-      focus: false,
-    },
-    {
-      name: "mergn",
-      focus: false,
-    },
-  ]);
+  let [worksList, setWorkList] = useState(initialState);
 
   function focusing() {
-    setWorkList((worksList) => {
-      let lastOpened = [...document.querySelectorAll(".open")].length - 1;
-      return worksList.map((workObj) => {
-        if (workObj === worksList[lastOpened]) {
-          console.log("set to true");
-          return (workObj = { ...workObj, focus: true });
+    setWorkList((prevWorksList) => {
+      let all = [...document.querySelectorAll(".work")];
+      let open = [...document.querySelectorAll(".open")];
+      let lastOpen = open[open.length - 1];
+      let indexInState = all.indexOf(lastOpen);
+      let newState = prevWorksList.map((workObj) => {
+        if (indexInState > -1) {
+          if (prevWorksList.indexOf(workObj) === indexInState) {
+            return { ...workObj, focus: true };
+          } else {
+            return { ...workObj, focus: false };
+          }
         } else {
-          console.log("set to false");
-          return (workObj = { ...workObj, focus: false });
+          return { ...workObj, focus: false };
         }
       });
+      console.log(newState);
+      return newState;
     });
   }
-  console.log(worksList);
+
   return (
     <Cards>
       {worksList.map((workObj) => (
-        <Work key={workObj.name} handler={focusing} index={worksList.indexOf(workObj)} name={workObj.name} focus={workObj.focus}></Work>
+        <Work key={workObj.name} focusHandler={focusing} index={worksList.indexOf(workObj)} name={workObj.name} focus={workObj.focus}></Work>
       ))}
     </Cards>
   );
