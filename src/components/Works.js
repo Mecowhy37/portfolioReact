@@ -36,24 +36,26 @@ const Works = () => {
     },
   ]);
 
-  function focusing(e) {
-    setWorkList((prevState) => {
-      let index = [...document.querySelectorAll(".work")].indexOf(e.target);
-      prevState.forEach((el) => {
-        if (prevState[index] === el) {
-          return [el, { focus: true }];
+  function focusing() {
+    setWorkList((worksList) => {
+      let lastOpened = [...document.querySelectorAll(".open")].length - 1;
+      return worksList.map((workObj) => {
+        if (workObj === worksList[lastOpened]) {
+          console.log("set to true");
+          return (workObj = { ...workObj, focus: true });
         } else {
-          return el;
+          console.log("set to false");
+          return (workObj = { ...workObj, focus: false });
         }
       });
     });
   }
-
+  console.log(worksList);
   return (
     <Cards>
-      {worksList.map((workObj) => {
-        return <Work key={workObj.name} handler={focusing} index={worksList.indexOf(workObj)} name={workObj.name}></Work>;
-      })}
+      {worksList.map((workObj) => (
+        <Work key={workObj.name} handler={focusing} index={worksList.indexOf(workObj)} name={workObj.name} focus={workObj.focus}></Work>
+      ))}
     </Cards>
   );
 };
