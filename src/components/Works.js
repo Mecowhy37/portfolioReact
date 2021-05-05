@@ -13,19 +13,19 @@ const Cards = styled.ul`
 `;
 const worksList = [
   {
-    name: "vibal",
+    name: "Vibal",
   },
   {
-    name: "superGood",
+    name: "Lets watch",
   },
   {
-    name: "lets watch",
+    name: "Backend",
   },
   {
-    name: "backend",
+    name: "Mergn",
   },
   {
-    name: "mergn",
+    name: "SuperGood",
   },
 ];
 
