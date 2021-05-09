@@ -6,14 +6,16 @@ const Card = styled.li`
   bottom: 0;
   width: 40px;
   height: 70%;
-  border-right: ${({ focus }) => (focus ? "1px solid red" : "1px solid var(--color-prm)")};
+  border-right: 1px solid var(--color-prm);
   transition: 1s cubic-bezier(0.25, 0.68, 0.21, 0.99);
-  left: ${({ index }) => (4 - index) * 40}px;
+  left: ${({ pos }) => pos};
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
+  cursor: pointer;
   &:hover {
     transform: translateX(4px);
+    /* height: 70.4%; */
   }
   & > p {
     height: 130px;
@@ -29,9 +31,9 @@ const Card = styled.li`
   }
 `;
 
-function Work({ name, index, focus, onClick }) {
+function Work({ name, index, focus, onClick, pos }) {
   return (
-    <Card index={index} className={`work`} focus={focus} onClick={onClick}>
+    <Card index={index} className={`work`} focus={focus} onClick={onClick} pos={pos}>
       <p className="copy">{name}</p>
     </Card>
   );
