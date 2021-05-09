@@ -19,22 +19,23 @@ const Card = styled.li`
   }
   & > p {
     height: 130px;
-    font-size: 22px;
+    font-size: 20px;
     padding-left: 4px;
     color: var(--color-prm);
     cursor: pointer;
     text-decoration: none;
     writing-mode: vertical-rl;
-    transform: rotate(-180deg) translateY(90px);
+    transform: rotate(-180deg) translateY(80px);
     margin: 0;
     align-self: flex-end;
+    white-space: nowrap;
   }
 `;
 
 function Work({ name, index, focus, onClick, pos }) {
   return (
     <Card index={index} className={`work`} focus={focus} onClick={onClick} pos={pos}>
-      <p className="copy">{name}</p>
+      <p className="header">{name}</p>
     </Card>
   );
 }

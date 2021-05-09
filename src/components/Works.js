@@ -13,9 +13,30 @@ const Cards = styled.ul`
   overflow: hidden;
 `;
 
-const lStart = "80px";
-const l1 = "40px";
-const l2 = "0px";
+const Content = styled.div`
+  z-index: -1;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  section {
+    position: absolute;
+    padding: 0 40px;
+    grid-row-start: 1;
+    width: 100%;
+    height: 100%;
+    display: grid;
+    place-items: center;
+    transition: clip-path 1s;
+    clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
+    &.closed {
+      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+    }
+  }
+`;
+
+const lStart = "120px";
+const l1 = "80px";
+const l2 = "40px";
 const lOut = "-60px";
 const lOut2 = "-100px";
 const r1 = "calc(100vw - 120px)";
@@ -28,7 +49,6 @@ let positions = [];
 const Works = () => {
   const [activeWork, setActiveWork] = useState(null);
   const setting = () => {
-    console.log("used");
     switch (activeWork) {
       case null:
         positions = [lStart, l1, l2, lOut, lOut2];
@@ -75,6 +95,15 @@ const Works = () => {
             ></Work>
           );
         })}
+        <Content>
+          {worksList.map((workCon, index) => {
+            return (
+              <section key={workCon.name} focused={activeWork} indexed={index} className={index === activeWork ? "" : "closed"}>
+                <div className="header">{workCon.name}</div>
+              </section>
+            );
+          })}
+        </Content>
       </Cards>
     )
   );
