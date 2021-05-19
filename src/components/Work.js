@@ -5,7 +5,7 @@ const Card = styled.li`
   position: absolute;
   bottom: 0;
   width: 40px;
-  height: 70%;
+  height: 80%;
   border-right: 1px solid var(--color-prm);
   /* transition: 1s cubic-bezier(0.25, 0.68, 0.21, 1); */
   transition: 1s cubic-bezier(0.33, 0.74, 0.34, 1);
@@ -26,10 +26,11 @@ const Card = styled.li`
     cursor: pointer;
     text-decoration: none;
     writing-mode: vertical-rl;
-    transform: rotate(-180deg) translateY(80px);
+    transform: rotate(-180deg) translateY(10px);
     margin: 0;
     align-self: flex-end;
     white-space: nowrap;
+    text-align: end;
   }
 `;
 

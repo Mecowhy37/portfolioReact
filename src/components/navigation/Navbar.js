@@ -11,7 +11,7 @@ const NavContainer = styled.nav`
   border-bottom: 1px solid #edededbd;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-around;
   z-index: 1;
 `;
