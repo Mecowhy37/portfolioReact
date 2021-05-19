@@ -15,9 +15,10 @@
 }
 .header {
   font-family: "MonumentExtended";
-  font-size: 50px;
+  font-size: 45px;
   color: var(--color-prm);
+  font-weight: normal;
 }
 .copy {
-  font-family: "TTNorms-Regular";
+  font-family: "TTNorms-Light";
 }

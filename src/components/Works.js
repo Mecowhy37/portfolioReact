@@ -3,6 +3,7 @@ import styled from "styled-components";
 import "../fonts/fonts.css";
 import worksList from "./WorksIndex";
 import Work from "./Work";
+import Content from "./Content";
 
 const Cards = styled.ul`
   position: relative;
@@ -13,12 +14,12 @@ const Cards = styled.ul`
   overflow: hidden;
 `;
 
-const Content = styled.div`
+const Contents = styled.div`
   z-index: -1;
   width: 100%;
   height: 100%;
   position: relative;
-  section {
+  & > section {
     position: absolute;
     padding: 0 40px;
     grid-row-start: 1;
@@ -26,11 +27,6 @@ const Content = styled.div`
     height: 100%;
     display: grid;
     place-items: center;
-    transition: clip-path 1s;
-    clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%);
-    &.closed {
-      clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-    }
   }
 `;
 
@@ -45,12 +41,11 @@ const rOut = "100vw";
 const rOut2 = "calc(100vw + 40px)";
 const rOut3 = "calc(100vw + 80px)";
 
-let positions = [];
 const Works = () => {
-  const [activeWork, setActiveWork] = useState(null);
-  const setting = () => {
+  const [activeWork, setActiveWork] = useState(-1);
+  let positions = () => {
     switch (activeWork) {
-      case null:
+      case -1:
         positions = [lStart, l1, l2, lOut, lOut2];
         break;
       case 0:
@@ -73,8 +68,11 @@ const Works = () => {
         break;
     }
   };
+  const explore = {
+    name: "explore my work",
+  };
   return (
-    setting(),
+    positions(),
     (
       <Cards>
         {worksList.map((workObj, index) => {
@@ -83,11 +81,13 @@ const Works = () => {
               key={workObj.name}
               index={index}
               onClick={() => {
-                if (index === activeWork) {
-                  index > 0 ? setActiveWork(index - 1) : setActiveWork(null);
-                } else {
-                  setActiveWork(index);
-                }
+                setActiveWork(() => {
+                  if (index === activeWork) {
+                    return index > 0 ? index - 1 : -1;
+                  } else {
+                    return index;
+                  }
+                });
               }}
               name={workObj.name}
               focus={activeWork}
@@ -95,15 +95,11 @@ const Works = () => {
             ></Work>
           );
         })}
-        <Content>
-          {worksList.map((workCon, index) => {
-            return (
-              <section key={workCon.name} focused={activeWork} indexed={index} className={index === activeWork ? "" : "closed"}>
-                <div className="header">{workCon.name}</div>
-              </section>
-            );
+        <Contents>
+          {[explore, ...worksList].map((workCon, index) => {
+            return <Content workCon={workCon} index={index} activeWork={activeWork} />;
           })}
-        </Content>
+        </Contents>
       </Cards>
     )
   );

@@ -7,7 +7,8 @@ const Card = styled.li`
   width: 40px;
   height: 70%;
   border-right: 1px solid var(--color-prm);
-  transition: 1s cubic-bezier(0.25, 0.68, 0.21, 0.99);
+  /* transition: 1s cubic-bezier(0.25, 0.68, 0.21, 1); */
+  transition: 1s cubic-bezier(0.33, 0.74, 0.34, 1);
   left: ${({ pos }) => pos};
   display: flex;
   flex-direction: column;
@@ -15,11 +16,11 @@ const Card = styled.li`
   cursor: pointer;
   &:hover {
     transform: translateX(4px);
-    /* height: 70.4%; */
   }
   & > p {
     height: 130px;
-    font-size: 20px;
+    font-size: 25px;
+    /* font-size: 20px; */
     padding-left: 4px;
     color: var(--color-prm);
     cursor: pointer;
@@ -35,7 +36,7 @@ const Card = styled.li`
 function Work({ name, index, focus, onClick, pos }) {
   return (
     <Card index={index} className={`work`} focus={focus} onClick={onClick} pos={pos}>
-      <p className="header">{name}</p>
+      <p className="copy">{name}</p>
     </Card>
   );
 }
