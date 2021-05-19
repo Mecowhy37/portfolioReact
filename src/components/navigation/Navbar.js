@@ -7,6 +7,7 @@ const NavContainer = styled.nav`
   grid-row: 1/2;
   height: 100%;
   width: 100%;
+  padding: 0 10%;
   border-bottom: 1px solid #edededbd;
   display: flex;
   flex-direction: row;
