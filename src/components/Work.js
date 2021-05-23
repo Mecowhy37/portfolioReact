@@ -7,8 +7,8 @@ const Card = styled.li`
   width: 40px;
   height: 80%;
   border-right: 1px solid var(--color-prm);
-  /* transition: 1s cubic-bezier(0.25, 0.68, 0.21, 1); */
-  transition: 1s cubic-bezier(0.33, 0.74, 0.34, 1);
+  transition: 1.2s cubic-bezier(0.25, 0.68, 0.21, 1);
+  /* transition: 1s cubic-bezier(0.33, 0.74, 0.34, 1); */
   left: ${({ pos }) => pos};
   display: flex;
   flex-direction: column;
