@@ -3,7 +3,8 @@ import styled from "styled-components";
 import "../fonts/fonts.css";
 import worksList from "./WorksIndex";
 import Work from "./Work";
-import Content from "./Content";
+import SliderPages from "./SliderPages";
+import { useEffect } from "react";
 
 const Cards = styled.ul`
   position: relative;
@@ -12,22 +13,6 @@ const Cards = styled.ul`
   padding: 0 40px;
   list-style: none;
   overflow: hidden;
-`;
-
-const Contents = styled.div`
-  z-index: -1;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  & > section {
-    position: absolute;
-    padding: 0 40px;
-    grid-row-start: 1;
-    width: 100%;
-    height: 100%;
-    display: grid;
-    place-items: center;
-  }
 `;
 
 const lStart = "120px";
@@ -68,9 +53,26 @@ const Works = () => {
         break;
     }
   };
+  const press = (e) => {
+    if (e.keyCode === 37) {
+      activeWork > -1 ? setActiveWork((prev) => prev - 1) : setActiveWork(-1);
+    } else if (e.keyCode === 39) {
+      activeWork < worksList.length - 1 ? setActiveWork((prev) => prev + 1) : setActiveWork(worksList.length - 1);
+    } else if (e.keyCode === 16) {
+      console.log("L shift");
+    }
+  };
+  useEffect(() => {
+    document.addEventListener("keydown", press);
+
+    return () => {
+      document.removeEventListener("keydown", press);
+    };
+  }, [activeWork]);
   const explore = {
     name: "explore my work",
   };
+  console.log(activeWork);
   return (
     positions(),
     (
@@ -95,11 +97,7 @@ const Works = () => {
             ></Work>
           );
         })}
-        <Contents>
-          {[explore, ...worksList].map((workCon, index) => {
-            return <Content workCon={workCon} index={index} activeWork={activeWork} />;
-          })}
-        </Contents>
+        <SliderPages content={[explore, ...worksList]} active={activeWork} />
       </Cards>
     )
   );

@@ -9,7 +9,6 @@ const Slider = styled.section`
   height: 100%;
   display: grid;
   place-items: center;
-  /* transition: clip-path 1s cubic-bezier(0.33, 0.74, 0.34, 1); */
   transition: clip-path 1.2s cubic-bezier(0.25, 0.68, 0.21, 1);
   &.open {
     clip-path: polygon(100% 0, 0 0, 0 100%, 100% 100%) !important;
