@@ -13,6 +13,7 @@ const Cards = styled.ul`
   padding: 0 40px;
   list-style: none;
   overflow: hidden;
+  z-index: -1;
 `;
 
 const lStart = "120px";
@@ -53,16 +54,16 @@ const Works = () => {
         break;
     }
   };
-  const press = (e) => {
-    if (e.keyCode === 37) {
-      activeWork > -1 ? setActiveWork((prev) => prev - 1) : setActiveWork(-1);
-    } else if (e.keyCode === 39) {
-      activeWork < worksList.length - 1 ? setActiveWork((prev) => prev + 1) : setActiveWork(worksList.length - 1);
-    } else if (e.keyCode === 16) {
-      console.log("L shift");
-    }
-  };
   useEffect(() => {
+    const press = (e) => {
+      if (e.keyCode === 37) {
+        activeWork > -1 ? setActiveWork((prev) => prev - 1) : setActiveWork(-1);
+      } else if (e.keyCode === 39) {
+        activeWork < worksList.length - 1 ? setActiveWork((prev) => prev + 1) : setActiveWork(worksList.length - 1);
+      } else if (e.keyCode === 16) {
+        console.log("L shift");
+      }
+    };
     document.addEventListener("keydown", press);
 
     return () => {
@@ -72,7 +73,6 @@ const Works = () => {
   const explore = {
     name: "explore my work",
   };
-  console.log(activeWork);
   return (
     positions(),
     (
