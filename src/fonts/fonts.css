@@ -18,7 +18,11 @@
   font-size: 45px;
   color: var(--color-prm);
   font-weight: normal;
+  line-height: 100%;
 }
 .copy {
   font-family: "TTNorms-Light";
+  color: var(--color-prm);
+  font-size: 23px;
+  line-height: 100%;
 }

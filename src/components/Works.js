@@ -16,9 +16,9 @@ const Cards = styled.ul`
   z-index: -1;
 `;
 
-const lStart = "120px";
-const l1 = "80px";
-const l2 = "40px";
+const lStart = "80px";
+const l1 = "40px";
+const l2 = "0px";
 const lOut = "-60px";
 const lOut2 = "-100px";
 const r1 = "calc(100vw - 120px)";
@@ -60,8 +60,6 @@ const Works = () => {
         activeWork > -1 ? setActiveWork((prev) => prev - 1) : setActiveWork(-1);
       } else if (e.keyCode === 39) {
         activeWork < worksList.length - 1 ? setActiveWork((prev) => prev + 1) : setActiveWork(worksList.length - 1);
-      } else if (e.keyCode === 16) {
-        console.log("L shift");
       }
     };
     document.addEventListener("keydown", press);

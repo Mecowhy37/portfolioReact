@@ -19,14 +19,14 @@ const Card = styled.li`
   }
   & > p {
     height: 130px;
-    font-size: 25px;
+    font-size: 23px;
     /* font-size: 20px; */
-    padding-left: 4px;
+    padding-left: 2px;
     color: var(--color-prm);
     cursor: pointer;
     text-decoration: none;
     writing-mode: vertical-rl;
-    transform: rotate(-180deg) translateY(10px);
+    transform: rotate(-180deg) translateY(20px);
     margin: 0;
     align-self: flex-end;
     white-space: nowrap;
