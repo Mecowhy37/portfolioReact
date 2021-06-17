@@ -110,7 +110,13 @@ const SliderPages = ({ content, active }) => {
     const press = (e) => {
       console.log(parent.current.children[active]);
       if (e.keyCode === 38) {
+        e.preventDefault();
+        parent.current.children[active + 1].focus();
+        parent.current.children[active + 1].dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
       } else if (e.keyCode === 40) {
+        e.preventDefault();
+        foobar.current.focus();
+        foobar.current.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown" }));
       }
     };
     document.addEventListener("keydown", press);
