@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 
 const Slides = styled.div`
   z-index: -1;
@@ -18,9 +18,7 @@ const Slider = styled.div`
   transition: clip-path 1.2s cubic-bezier(0.25, 0.68, 0.21, 1);
   overflow-y: scroll;
   scroll-behavior: smooth;
-  &:focus {
-    border: 50px solid red;
-  }
+  outline: none;
   &::-webkit-scrollbar {
     display: none;
   }
@@ -102,30 +100,70 @@ const Slider = styled.div`
 `;
 
 const SliderPages = ({ content, active }) => {
-  const parent = useRef();
-  const foobar = useRef();
-  const ezone = useRef();
-
+  const [scrolled, setScrolled] = useState([]);
+  let parent = useRef();
   useEffect(() => {
-    const press = (e) => {
-      console.log(parent.current.children[active]);
-      if (e.keyCode === 38) {
-        e.preventDefault();
-        parent.current.children[active + 1].focus();
-        parent.current.children[active + 1].dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowUp" }));
-      } else if (e.keyCode === 40) {
-        e.preventDefault();
-        foobar.current.focus();
-        foobar.current.dispatchEvent(new KeyboardEvent("keydown", { key: "ArrowDown" }));
+    setScrolled(() => [...parent.current.children].map(() => 0));
+  }, []);
+  useEffect(() => {
+    let scrollActive = parent.current.children[active + 1];
+    [...parent.current.children].forEach((el) => {
+      if (el === scrollActive) {
+        // el.querySelector(".header").style.backgroundColor = "red";
+        el.focus();
+        return;
       }
+      // el.querySelector(".header").style.backgroundColor = "";
+    });
+    const press = (e) => {
+      setScrolled((prev) => {
+        if (active === -1) {
+          return prev;
+        }
+        let New = [...prev];
+        if (e.keyCode === 38) {
+          if (prev[active] > 0) {
+            New.splice(active, 1, prev[active] - 1);
+            return New;
+          }
+          return New;
+        } else if (e.keyCode === 40) {
+          New.splice(active, 1, prev[active] + 1);
+          return New;
+        } else {
+          return New;
+        }
+      });
+      // [...scrollActive.children][scrolled[active]].scrollIntoView();
     };
+    // const press = (e) => {
+    //   setScrolled((prev) => {
+    //     if (active === -1) {
+    //       return prev;
+    //     }
+    //     let New = [...prev];
+    //     if (e.keyCode === 38) {
+    //       if (prev[active] > 0) {
+    //         New.splice(active, 1, prev[active] - 1);
+    //         return New;
+    //       }
+    //       return New;
+    //     } else if (e.keyCode === 40) {
+    //       New.splice(active, 1, prev[active] + 1);
+    //       return New;
+    //     } else {
+    //       return New;
+    //     }
+    //   });
+    // };
     document.addEventListener("keydown", press);
 
     return () => {
       document.removeEventListener("keydown", press);
     };
-  }, [active]);
+  }, [active, scrolled]);
 
+  console.log(scrolled);
   return (
     <Slides className="slides" ref={parent}>
       {/* {content.map((workCon, index) => {
@@ -141,12 +179,12 @@ const SliderPages = ({ content, active }) => {
           </Slider>
         );
       })} */}
-      <Slider key={content[0].name} className={`scroller ${-1 === active ? "open" : -1 <= active ? "closedR" : "closedL"}`} tabindex="0">
+      <Slider key={content[0].name} className={`scroller ${-1 === active ? "open" : -1 <= active ? "closedR" : "closedL"}`} tabIndex="-1">
         <div className="section" id="intro">
           <h1 className="header">{content[0].name}</h1>
         </div>
       </Slider>
-      <Slider ref={foobar} key={content[1].name} className={`scroller ${0 === active ? "open" : 0 <= active ? "closedR" : "closedL"}`} tabindex="0">
+      <Slider key={content[1].name} className={`scroller ${0 === active ? "open" : 0 <= active ? "closedR" : "closedL"}`} tabIndex="-1">
         <div className="section">
           <h1 className="header">
             <span className="index">{`0${content[1].index}`}</span>
@@ -172,7 +210,7 @@ const SliderPages = ({ content, active }) => {
           <h1 className="header">trzecia</h1>
         </div>
       </Slider>
-      <Slider ref={ezone} key={content[2].name} className={`scroller ${1 === active ? "open" : 1 <= active ? "closedR" : "closedL"}`} tabindex="0">
+      <Slider key={content[2].name} className={`scroller ${1 === active ? "open" : 1 <= active ? "closedR" : "closedL"}`} tabIndex="-1">
         <div className="section">
           <h1 className="header">
             <span className="index">{`0${content[2].index}`}</span>
