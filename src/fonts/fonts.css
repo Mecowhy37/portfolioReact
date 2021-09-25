@@ -17,7 +17,7 @@
   font-family: "MonumentExtended";
   font-size: 45px;
   color: var(--color-prm);
-  font-weight: normal;
+  font-weight: lighter;
   line-height: 100%;
 }
 .copy {

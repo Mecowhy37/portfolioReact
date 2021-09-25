@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { useRef, useEffect, useState } from "react";
+// import { useRef, useEffect, useState } from "react";
+import { useRef, useEffect } from "react";
 
 const Slides = styled.div`
   z-index: -1;
@@ -100,70 +101,48 @@ const Slider = styled.div`
 `;
 
 const SliderPages = ({ content, active }) => {
-  const [scrolled, setScrolled] = useState([]);
+  // const [scrolled, setScrolled] = useState([]);
   let parent = useRef();
-  useEffect(() => {
-    setScrolled(() => [...parent.current.children].map(() => 0));
-  }, []);
+  // useEffect(() => {
+  //   setScrolled(() => [...parent.current.children].map(() => 0));
+  // }, []);
   useEffect(() => {
     let scrollActive = parent.current.children[active + 1];
     [...parent.current.children].forEach((el) => {
       if (el === scrollActive) {
-        // el.querySelector(".header").style.backgroundColor = "red";
         el.focus();
         return;
       }
-      // el.querySelector(".header").style.backgroundColor = "";
     });
     const press = (e) => {
-      setScrolled((prev) => {
-        if (active === -1) {
-          return prev;
-        }
-        let New = [...prev];
-        if (e.keyCode === 38) {
-          if (prev[active] > 0) {
-            New.splice(active, 1, prev[active] - 1);
-            return New;
-          }
-          return New;
-        } else if (e.keyCode === 40) {
-          New.splice(active, 1, prev[active] + 1);
-          return New;
-        } else {
-          return New;
-        }
-      });
+      // setScrolled((prev) => {
+      //   if (active === -1) {
+      //     return prev;
+      //   }
+      //   let New = [...prev];
+      //   if (e.keyCode === 38) {
+      //     if (prev[active] > 0) {
+      //       New.splice(active, 1, prev[active] - 1);
+      //       return New;
+      //     }
+      //     return New;
+      //   } else if (e.keyCode === 40) {
+      //     New.splice(active, 1, prev[active] + 1);
+      //     return New;
+      //   } else {
+      //     return New;
+      //   }
+      // });
       // [...scrollActive.children][scrolled[active]].scrollIntoView();
     };
-    // const press = (e) => {
-    //   setScrolled((prev) => {
-    //     if (active === -1) {
-    //       return prev;
-    //     }
-    //     let New = [...prev];
-    //     if (e.keyCode === 38) {
-    //       if (prev[active] > 0) {
-    //         New.splice(active, 1, prev[active] - 1);
-    //         return New;
-    //       }
-    //       return New;
-    //     } else if (e.keyCode === 40) {
-    //       New.splice(active, 1, prev[active] + 1);
-    //       return New;
-    //     } else {
-    //       return New;
-    //     }
-    //   });
-    // };
     document.addEventListener("keydown", press);
 
     return () => {
       document.removeEventListener("keydown", press);
     };
-  }, [active, scrolled]);
+    // }, [active, scrolled]);
+  }, [active]);
 
-  console.log(scrolled);
   return (
     <Slides className="slides" ref={parent}>
       {/* {content.map((workCon, index) => {
@@ -223,6 +202,32 @@ const SliderPages = ({ content, active }) => {
           </div>
           <div className="tech">
             {content[2].tech.map((e) => (
+              <p key={e} className="copy">
+                {e}
+              </p>
+            ))}
+          </div>
+        </div>
+        <div className="section">
+          <h1 className="header">druga</h1>
+        </div>
+        <div className="section">
+          <h1 className="header">trzecia</h1>
+        </div>
+      </Slider>
+      <Slider key={content[3].name} className={`scroller ${2 === active ? "open" : 2 <= active ? "closedR" : "closedL"}`} tabIndex="-1">
+        <div className="section">
+          <h1 className="header">
+            <span className="index">{`0${content[3].index}`}</span>
+            <br />
+            {content[3].name}
+          </h1>
+          <div className="coverImage">
+            <h1 className="header">{content[3].coverDes}</h1>
+            <img className="filter" src={content[3].cover} alt="foobar" />
+          </div>
+          <div className="tech">
+            {content[3].tech.map((e) => (
               <p key={e} className="copy">
                 {e}
               </p>

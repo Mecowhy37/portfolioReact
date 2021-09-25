@@ -16,11 +16,14 @@ const worksList = [
     cover: Images.ezone,
   },
   {
-    name: "Backend",
+    name: "Lets watch",
+    coverDes: "watchlist app server",
+    tech: ["node.js", "apollo-server", "graphql", "postgresql", "knex", "jwt"],
     index: 3,
+    cover: Images.letswatch,
   },
   {
-    name: "Mergn",
+    name: "Vibal",
     index: 4,
   },
   {

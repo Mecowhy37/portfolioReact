@@ -18,9 +18,7 @@ const Card = styled.li`
     transform: translateX(4px);
   }
   & > p {
-    height: 130px;
     font-size: 23px;
-    /* font-size: 20px; */
     padding-left: 2px;
     color: var(--color-prm);
     cursor: pointer;
