@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 import Layout from "./components/Layout";
 import Navbar from "./components/navigation/Navbar";
-import About from "./components/About";
-import Contact from "./components/Contact";
+// import About from "./components/About";
+// import Contact from "./components/Contact";
 import Works from "./components/Works";
 
 const Content = styled.main`
