@@ -19,17 +19,17 @@ const Content = styled.main`
 `;
 
 function App() {
-  const linksArr = ["about", "porfolio", "contact"];
+  const linksArr = ["porfolio"];
 
   return (
     <Router>
       <Layout>
         <Navbar links={linksArr}></Navbar>
         <Content>
-          <Route exact path="/" component={About} />
-          <Route exact path="/about" component={About} />
+          <Route path="/" component={Works} />
+          {/* <Route exact path="/about" component={About} />
           <Route exact path="/contact" component={Contact} />
-          <Route exact path="/porfolio" component={Works} />
+          <Route exact path="/porfolio" component={Works} /> */}
         </Content>
       </Layout>
     </Router>

@@ -1,4 +1,4 @@
-import bg from "../images/background.jpg";
+import bg from "../images/backgroundII.png";
 import styled from "styled-components";
 import React from "react";
 

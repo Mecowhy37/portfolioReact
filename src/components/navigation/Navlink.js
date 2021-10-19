@@ -27,7 +27,8 @@ const Anchor = styled(NavLink)`
 
 function Navlink({ children }) {
   return (
-    <Anchor to={`/${children.toLowerCase()}`} exact className="copy" activeClassName="active">
+    // <Anchor to={`/${children.toLowerCase()}`} exact className="copy" activeClassName="active">
+    <Anchor to={`/`} exact className="copy" activeClassName="active">
       {children}
     </Anchor>
   );

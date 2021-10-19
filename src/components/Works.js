@@ -95,7 +95,7 @@ const Works = () => {
             ></Work>
           );
         })}
-        <SliderPages content={[explore, ...worksList]} active={activeWork} />
+        <SliderPages intro={explore} worksList={[...worksList]} active={activeWork} />
       </Cards>
     )
   );
